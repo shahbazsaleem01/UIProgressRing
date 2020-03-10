@@ -7,14 +7,29 @@
 //
 
 import UIKit
+import UIProgressRing
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var progressRing: UIProgressRingView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        progressRing.setProgress(progress: 50)
+        progressRing.progressLabelFont = UIFont.systemFont(ofSize: 30, weight: .bold)
+        progressRing.progressLabelColor = .red
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { (timer) in
+            self.progressRing.setProgress(progress: Double.random(in: 10...100))
+        }
+        
+    }
+    
 
 }
 
