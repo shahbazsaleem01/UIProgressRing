@@ -11,7 +11,7 @@ Preview
 -
 ![preview](Preview.gif)
 
-Basic Examples
+Example
 -
 ```swift
 import UIKit
