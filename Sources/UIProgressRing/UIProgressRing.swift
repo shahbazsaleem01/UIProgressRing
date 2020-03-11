@@ -166,7 +166,6 @@ open class UIProgressRingView: UIView {
             }else {
                 tempProgress -= 1
             }
-            print(tempProgress)
             self?.progressLabel.text = "\(Int(tempProgress))%"
             
             if isIncreamentInProgress && tempProgress >= progress{
