@@ -1,7 +1,7 @@
 # UIProgressRing for iOS
 
 [![Github License](https://img.shields.io/apm/l/github)](https://github.com/shahbazsaleem01/UIProgressRing#mit-license)
-![ios minimum version](https://img.shields.io/badge/ios-v12%2B-green.svg)
+![ios minimum version](https://img.shields.io/badge/ios-v11%2B-green.svg)
 ![lib version](https://img.shields.io/badge/version-1.0.0-yellowgreen.svg)
 ![swift version](https://img.shields.io/badge/swift%20version-4.0%20--%205.1-orange.svg)
 
