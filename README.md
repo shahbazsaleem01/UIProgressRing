@@ -5,7 +5,7 @@
 ![lib version](https://img.shields.io/badge/version-1.0.0-yellowgreen.svg)
 ![swift version](https://img.shields.io/badge/swift%20version-4.0%20--%205.1-orange.svg)
 
-UIProgressRing is an easy way to display a progress in a ring shape and its compeletly customizable. If you find any limation, you can always request.
+UIProgressRing is an easy way to display a progress in a ring shape and its completely customisable. If you find any limation, you can always request.
 
 Preview
 -
