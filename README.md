@@ -1,9 +1,15 @@
 # UIProgressRing for iOS
 
 [![Github License](https://img.shields.io/apm/l/github)](https://github.com/shahbazsaleem01/UIProgressRing#mit-license)
+![ios minimum version](https://img.shields.io/badge/ios-v12%2B-green.svg)
+![lib version](https://img.shields.io/badge/version-1.0.0-yellowgreen.svg)
+![swift version](https://img.shields.io/badge/swift%20version-4.0%20--%205.1-orange.svg)
 
 UIProgressRing is an easy way to display a progress in a ring shape and its compeletly customizable. If you find any limation, you can always request.
 
+Screenshots
+-
+![screenshot](Screenshot.png)
 
 MIT License
 -----------
