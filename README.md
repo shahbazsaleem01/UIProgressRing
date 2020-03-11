@@ -37,7 +37,9 @@ class ViewController: UIViewController {
     }
 }
 ```
-
+Installation
+-
+You can add UIProgressRing using Swift Package Manager or Manually download and add UIProgressRing.swift in your project.
 
 MIT License
 -----------
