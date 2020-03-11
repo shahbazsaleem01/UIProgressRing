@@ -7,9 +7,9 @@
 
 UIProgressRing is an easy way to display a progress in a ring shape and its compeletly customizable. If you find any limation, you can always request.
 
-Screenshots
+Preview
 -
-![screenshot](Screenshot.png)
+![preview](Preview.gif)
 
 MIT License
 -----------
