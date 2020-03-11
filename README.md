@@ -11,6 +11,34 @@ Preview
 -
 ![preview](Preview.gif)
 
+Basic Examples
+-
+```swift
+import UIKit
+import UIProgressRing
+
+class ViewController: UIViewController {
+
+    @IBOutlet weak var progressRing: UIProgressRingView!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        progressRing.setProgress(progress: 50)
+        progressRing.setBackgroundConfig(config: RingShapeLayer.Config(startAngle: 91, endAngle: 90, lineWidth: 10, color: .black, strokeEnd: 1.0, lineDashPattern: [2.5,2.5]))
+        progressRing.setForeGroundConfig(config: RingShapeLayer.Config(color: .red))
+        
+        progressRing.progressLabelFont = UIFont.systemFont(ofSize: 30, weight: .bold)
+        progressRing.progressLabelColor = .red
+        
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { (timer) in
+            self.progressRing.setProgress(progress: Double.random(in: 10...100))
+        }   
+    }
+}
+```
+
+
 MIT License
 -----------
 
