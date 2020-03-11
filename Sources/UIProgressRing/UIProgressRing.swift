@@ -67,8 +67,14 @@ public class RingShapeLayer: CAShapeLayer{
 open class UIProgressRingView: UIView {
     
     private var timer: Timer?
-    public var backgroundLayer = RingShapeLayer()
-    public var foregroundLayer = RingShapeLayer()
+    private var backgroundLayer = RingShapeLayer()
+    private var foregroundLayer = RingShapeLayer()
+    private var progressLabel = UILabel(frame: .zero)
+    private var completion: (()->())?
+    private var progress: Double = 0.0
+    private var backgroundLayerConfig = RingShapeLayer.Config()
+    private var foregroundLayerConfig = RingShapeLayer.Config(color: .blue)
+    
     public var progressAnimationSpeedPerUnit = 0.05
     public var progressLabelFont: UIFont = UIFont.systemFont(ofSize: 15){
         didSet{
@@ -81,15 +87,7 @@ open class UIProgressRingView: UIView {
             progressLabel.textColor = progressLabelColor
         }
     }
-    
-    private var progressLabel = UILabel(frame: .zero)
-    
-    private var completion: (()->())?
-    
-    public var progress: Double = 0.0
-    
-    private var backgroundLayerConfig = RingShapeLayer.Config()
-    private var foregroundLayerConfig = RingShapeLayer.Config(color: .blue)
+
     
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -101,12 +99,6 @@ open class UIProgressRingView: UIView {
         progressLabel.textAlignment = .center
         addSubview(progressLabel)
     }
-    
-    open override func layoutSubviews() {
-        super.layoutSubviews()
-        
-    }
-    
     
     private func addBackgroundLayer() {
         backgroundLayer.setFrame(frame: self.bounds)
@@ -153,6 +145,12 @@ open class UIProgressRingView: UIView {
         let previousProgress = self.progress
         self.progress = progress
 
+        guard animated else{
+            progressLabel.text = "\(Int(progress))%"
+            addForegroundLayer()
+            return
+        }
+        
         var isIncreamentInProgress: Bool{
             previousProgress < progress
         }
