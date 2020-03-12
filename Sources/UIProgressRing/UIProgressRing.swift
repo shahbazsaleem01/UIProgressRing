@@ -145,6 +145,8 @@ open class UIProgressRingView: UIView {
         let previousProgress = self.progress
         self.progress = progress
 
+        guard previousProgress != progress else {return}
+        
         guard animated else{
             progressLabel.text = "\(Int(progress))%"
             addForegroundLayer()
