@@ -72,6 +72,7 @@ open class UIProgressRingView: UIView {
     private var progressLabel = UILabel(frame: .zero)
     private var completion: (()->())?
     private var progress: Double = 0.0
+    private var totalProgress: Double = 100.0
     private var backgroundLayerConfig = RingShapeLayer.Config()
     private var foregroundLayerConfig = RingShapeLayer.Config(color: .blue)
     
@@ -81,6 +82,12 @@ open class UIProgressRingView: UIView {
             progressLabel.font = progressLabelFont
         }
     }
+  
+    public var progressLabelHidden: Bool = false{
+        didSet{
+            progressLabel.isHidden = progressLabelHidden
+        }
+    }
     
     public var progressLabelColor: UIColor = .red{
         didSet{
@@ -88,6 +95,7 @@ open class UIProgressRingView: UIView {
         }
     }
 
+    public var showPercentageSign = true
     
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -123,7 +131,7 @@ open class UIProgressRingView: UIView {
             total = -total
         }
         
-        return backgroundLayer.config.endAngleNormalized - (total - (total * progress*0.01))
+        return backgroundLayer.config.endAngleNormalized - (total - (total * (progress/totalProgress)))
     }
     
     public func setBackgroundConfig(config: RingShapeLayer.Config){
@@ -141,14 +149,14 @@ open class UIProgressRingView: UIView {
         foregroundLayer.configure(config: config)
     }
     
-    public func setProgress(progress: Double, animated: Bool = true){
+  public func setProgress(progress: Double, totalProgress: Double = 100.0, animated: Bool = true){
         let previousProgress = self.progress
-        self.progress = progress
-
+        self.progress = progress > totalProgress ? totalProgress : progress
+        self.totalProgress = totalProgress
         guard previousProgress != progress else {return}
         
         guard animated else{
-            progressLabel.text = "\(Int(progress))%"
+          progressLabel.text = "\(Int(progress))" + "\(showPercentageSign ? "%" : "")"
             addForegroundLayer()
             return
         }
@@ -160,13 +168,14 @@ open class UIProgressRingView: UIView {
         var tempProgress = previousProgress
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: progressAnimationSpeedPerUnit, repeats: true) {[weak self] (timer) in
-            
+          guard let self = self else {return}
+          
             if isIncreamentInProgress{
                 tempProgress += 1.0
             }else {
                 tempProgress -= 1
             }
-            self?.progressLabel.text = "\(Int(tempProgress))%"
+          self.progressLabel.text = "\(Int(tempProgress))" + "\(self.showPercentageSign ? "%" : "")"
             
             if isIncreamentInProgress && tempProgress >= progress{
                 timer.invalidate()
